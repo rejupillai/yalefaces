@@ -18,14 +18,13 @@ facedb="yale-facedb"
 
 if [ -f ${output}.csv ]; then
   mv ${output}.csv /tmp/${output}.csv.bak
-  mv ${output}_test.csv /tmp/${output}_test.csv.bak
+  mv ${output}_test.jsonl /tmp/${output}_test.jsonl.bak
 fi
 
-touch ${output}.csv ; touch ${output}_test.csv
+touch ${output}.csv ; touch ${output}_test.jsonl
 
 # header of the dataset
 echo "image,subject" > ${output}.csv 
-echo "image,subject" > ${output}_test.csv 
 
 
 # include the number of subjects for the run ; yale-facedb has 15 subjects in
@@ -38,6 +37,8 @@ do
     pose=`echo $input | cut -d "." -f2`
     subject=`echo $input | cut -d "." -f1`
     dataset="gs://${facedb}/${input}, ${subject}"
+
+    # random logic to split and have representation from each class
     if ( [ ${pose} == "normal" ]  && [ ${num} == "01" ] ) ||
       ( [ ${pose} == "glasses" ]  && [ ${num} == "02" ] ) ||
       ( [ ${pose} == "sad" ]  && [ ${num} == "03" ] ) ||
@@ -48,7 +49,8 @@ do
       ( [ ${pose} == "suprised" ]  && [ ${num} == "08" ] ) ||
       ( [ ${pose} == "happy" ]  && [ ${num} == "09" ] ) ||
       ( [ ${pose} == "wink" ]  && [ ${num} == "10" ] ) ; then
-      echo $dataset >> ${output}_test.csv
+      testfileincs=`echo $dataset | cut -d "," -f1`  
+      echo "{ \"content\": \"${testfileincs}\",  \"mimeType\": \"image/gif\" }" >> ${output}_test.jsonl
     else 
       echo $dataset >> ${output}.csv
     fi
@@ -57,4 +59,3 @@ do
 done
 
 #end
-

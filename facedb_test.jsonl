@@ -1,0 +1,9 @@
+{ "content": "gs://yale-facedb/subject01.normal",  "mimeType": "image/gif" }
+{ "content": "gs://yale-facedb/subject02.glasses",  "mimeType": "image/gif" }
+{ "content": "gs://yale-facedb/subject03.sad",  "mimeType": "image/gif" }
+{ "content": "gs://yale-facedb/subject04.leftlight",  "mimeType": "image/gif" }
+{ "content": "gs://yale-facedb/subject05.centerlight",  "mimeType": "image/gif" }
+{ "content": "gs://yale-facedb/subject06.rightlight",  "mimeType": "image/gif" }
+{ "content": "gs://yale-facedb/subject07.sleepy",  "mimeType": "image/gif" }
+{ "content": "gs://yale-facedb/subject09.happy",  "mimeType": "image/gif" }
+{ "content": "gs://yale-facedb/subject10.wink",  "mimeType": "image/gif" }
